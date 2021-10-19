@@ -1,0 +1,52 @@
+-----1
+
+SELECT * FROM `students` JOIN `degrees` ON `students`.`degree_id` = `degrees`.`id` WHERE `degrees`.`name`='Corso di Laurea in Economia'
+
+-----2
+
+SELECT * FROM `departments` JOIN `degrees` ON `degrees`.`department_id`= `departments`.`id` WHERE `departments`.`name`='Dipartimento di Neuroscienze'
+
+-----3
+
+SELECT * FROM `courses` JOIN `course_teacher` ON `course_teacher`.`course_id`= `courses`.`id` JOIN `teachers` ON `teachers`.`id` =`course_teacher`.`teacher_id` WHERE `teachers`.`id`=44
+
+-----4
+
+SELECT `students`.`name`, students.surname, degrees.name, departments.name FROM `students` JOIN `degrees` ON `degrees`.`id`= `students`.`degree_id` JOIN `departments` ON `departments`.`id`= `degrees`.`department_id` ORDER BY students.surname, students.name
+
+-----5
+
+
+SELECT * FROM `degrees` JOIN `courses` ON courses.degree_id= degrees.id JOIN `course_teacher`ON course_teacher.course_id= courses.id JOIN `teachers` ON teachers.id=course_teacher.teacher_id
+
+-----6
+
+SELECT COUNT(teachers.id), teachers.name, teachers.surname FROM `teachers` JOIN course_teacher ON course_teacher.teacher_id= teachers.id JOIN courses ON courses.id = course_teacher.course_id JOIN degrees ON degrees.id = courses.degree_id JOIN departments ON departments.id= degrees.department_id WHERE departments.name='Dipartimento di Matematica' GROUP BY teachers.id
+
+
+
+------------------------------------------------------group-by-----------------------------------------------------------------------------------------
+
+
+----1
+
+SELECT YEAR (enrolment_date),COUNT(YEAR (enrolment_date)) FROM `students` GROUP BY `YEAR (enrolment_date)`
+
+
+----2
+
+SELECT COUNT(office_address) FROM `teachers` GROUP BY `office_address`
+
+-----3
+
+SELECT AVG(vote) FROM `exam_student` GROUP BY exam_id
+
+----4
+
+
+SELECT COUNT(department_id) FROM `degrees` GROUP BY department_id
+
+
+
+
+
